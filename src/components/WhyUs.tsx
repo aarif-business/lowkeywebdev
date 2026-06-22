@@ -1,12 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Zap, Code2, Wallet, Smartphone } from 'lucide-react';
 
 const points = [
-  { icon: '⚡', title: 'Fast Delivery', desc: 'Most projects delivered within 7–14 days. No endless delays.' },
-  { icon: '🛠', title: '100% Custom Built', desc: 'No drag-and-drop builders. Everything is hand-coded for your brand.' },
-  { icon: '💰', title: 'Affordable Pricing', desc: 'Premium quality at prices that make sense for local businesses.' },
-  { icon: '📱', title: 'Mobile First', desc: 'Every website looks flawless on phones, tablets, and desktops.' },
+  { icon: Zap, title: 'Fast Delivery', desc: 'Most projects delivered within 7–14 days. No endless delays.' },
+  { icon: Code2, title: '100% Custom Built', desc: 'No drag-and-drop builders. Everything is hand-coded for your brand.' },
+  { icon: Wallet, title: 'Affordable Pricing', desc: 'Premium quality at prices that make sense for local businesses.' },
+  { icon: Smartphone, title: 'Mobile First', desc: 'Every website looks flawless on phones, tablets, and desktops.' },
 ];
 
 export default function WhyUs() {
@@ -20,7 +21,7 @@ export default function WhyUs() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {points.map((p, i) => (
             <motion.div key={p.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1, duration: 0.55 }} className="flex flex-col gap-3">
-              <span className="text-2xl">{p.icon}</span>
+              <p.icon size={22} className="text-violet" strokeWidth={1.5} />
               <h3 className="font-display font-semibold text-white text-base">{p.title}</h3>
               <p className="font-sans text-sm text-gray leading-relaxed">{p.desc}</p>
             </motion.div>

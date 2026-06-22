@@ -10,8 +10,15 @@ import CTA from '@/components/CTA';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Low Key WebDev — We Build Different.',
-  description: 'Custom websites, dashboards & digital experiences for restaurants, cafes and local businesses. Based in Hyderabad.',
+  title: 'Low Key WebDev — Custom Websites & Dashboards for Local Businesses',
+  description: 'Low Key WebDev builds custom websites, booking systems, admin dashboards, and logo designs for local businesses. Based in Kakinada, India. Available worldwide.',
+  alternates: { canonical: 'https://www.lowkeywebdev.com' },
+  openGraph: {
+    url: 'https://www.lowkeywebdev.com',
+    title: 'Low Key WebDev — Custom Websites & Dashboards for Local Businesses',
+    description: 'Custom websites, booking systems, admin dashboards, and logo designs. Based in Kakinada, India.',
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+  },
 };
 
 export default function HomePage() {

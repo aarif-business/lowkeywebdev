@@ -2,23 +2,38 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { MessageCircle } from 'lucide-react';
 import Footer from '@/components/Footer';
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', business: '', email: '', phone: '', message: '' });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
-    setTimeout(() => { setStatus('success'); }, 1000);
+    try {
+      const res = await fetch('https://formspree.io/f/xbdvjdgd', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setStatus('success');
+        setForm({ name: '', business: '', email: '', phone: '', message: '' });
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   const inputClass = "w-full bg-transparent border-b py-3 font-sans text-sm text-white placeholder:text-gray focus:outline-none transition-colors duration-300 focus:border-violet";
-  const labelClass = "block font-sans text-[0.6rem] uppercase tracking-[0.2em] mb-1" ;
+  const labelClass = "block font-sans text-[0.6rem] uppercase tracking-[0.2em] mb-1";
 
   return (
     <main className="bg-black min-h-screen pt-24">
@@ -39,12 +54,12 @@ export default function ContactPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            href="https://wa.me/91XXXXXXXXXX?text=Hi, I'm interested in a website for my business."
+            href="https://wa.me/918008510757?text=Hi, I'm interested in a website for my business."
             target="_blank"
             className="flex items-center gap-3 w-full rounded-2xl px-6 py-4 mb-8 font-sans text-sm font-semibold transition-all hover:opacity-90"
             style={{ background: 'rgba(37,211,102,0.1)', border: '1px solid rgba(37,211,102,0.25)', color: '#25D366' }}
           >
-            <span className="text-xl">💬</span>
+            <MessageCircle size={18} strokeWidth={1.5} />
             Chat on WhatsApp Instead
           </motion.a>
 
@@ -86,6 +101,11 @@ export default function ContactPage() {
                 <label className={labelClass} style={{ color: 'rgba(160,160,160,0.6)' }}>Message *</label>
                 <textarea name="message" required rows={4} value={form.message} onChange={handleChange} placeholder="Tell us about your business and what you need..." className={`${inputClass} resize-none`} style={{ borderBottomColor: 'rgba(255,255,255,0.1)' }} />
               </div>
+
+              {status === 'error' && (
+                <p className="font-sans text-xs text-red-400">Something went wrong. Please try WhatsApp or email us directly.</p>
+              )}
+
               <button
                 type="submit"
                 disabled={status === 'loading'}
