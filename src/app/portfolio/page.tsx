@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Globe, Zap, BarChart2, User } from 'lucide-react';
+import { Globe, Zap, BarChart2, User, ArrowUpRight } from 'lucide-react';
 import Footer from '@/components/Footer';
 
 const stats = [
@@ -9,6 +9,30 @@ const stats = [
   { label: 'Dynamic Web Apps', count: '18+', desc: 'CMS-driven sites, booking systems, portals', icon: Zap },
   { label: 'Analytics Dashboards', count: '12+', desc: 'Admin panels, real-time data dashboards', icon: BarChart2 },
   { label: 'Portfolio Sites', count: '10+', desc: 'Personal brands, agencies, creatives', icon: User },
+];
+
+const featured = [
+  {
+    name: "De' Needs Hyper Bazzar",
+    type: 'E-Commerce · Dynamic Web App',
+    desc: "Full e-commerce supermarket website with animated hero, interactive product catalogue with category filters, shopping cart with slide-out drawer, order placement system, and admin dashboard with inventory & order management.",
+    tags: ['Next.js', 'Supabase', 'Framer Motion', 'Zustand', 'Tailwind CSS'],
+    link: 'https://de-needs-hypermart.vercel.app/',
+  },
+  {
+    name: 'Records Writing Kakinada',
+    type: 'Academic Services · Dynamic Web App',
+    desc: 'Full academic & technical services website with animated hero, live price calculator for records/drawings, online service request form with auto-filled student profiles, invoice generation, admin dashboard with visitor analytics, and student loyalty discount system.',
+    tags: ['Next.js', 'Supabase', 'Framer Motion', 'Tailwind CSS', 'TypeScript'],
+    link: 'https://recordswritingkakinada.vercel.app/',
+  },
+  {
+    name: 'CryptoPulse',
+    type: 'Analytics Dashboard · Dynamic Web App',
+    desc: 'Full professional crypto trading terminal with live price tracking, interactive charts with RSI & SMA indicators, Fear & Greed gauge, whale alert feed, profit calculator, price alerts with browser notifications, and Binance affiliate monetization.',
+    tags: ['React (Vite)', 'Binance API', 'CoinGecko API', 'Framer Motion', 'Recharts', 'Tailwind CSS'],
+    link: 'https://crypto-pulse-rouge-eight.vercel.app/',
+  },
 ];
 
 export default function PortfolioPage() {
@@ -67,6 +91,56 @@ export default function PortfolioPage() {
                 <span className="font-display font-bold text-white text-4xl">{s.count}</span>
                 <span className="font-sans text-xs font-semibold text-white/80">{s.label}</span>
                 <span className="font-sans text-[0.65rem] text-gray leading-relaxed">{s.desc}</span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Featured Projects */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="font-sans text-[0.65rem] uppercase tracking-[0.3em] text-violet mb-6"
+          >
+            Featured Work
+          </motion.p>
+
+          <div className="flex flex-col gap-6 mb-10">
+            {featured.map((p, i) => (
+              <motion.div
+                key={p.name}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 + i * 0.1, duration: 0.6 }}
+                className="rounded-2xl p-8 md:p-10"
+                style={{ background: '#111111', border: '1px solid rgba(124,58,237,0.2)' }}
+              >
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <span
+                    className="font-sans text-[0.6rem] uppercase tracking-widest px-3 py-1 rounded-full inline-block"
+                    style={{ background: 'rgba(124,58,237,0.12)', color: '#9B6DFF', border: '1px solid rgba(124,58,237,0.25)' }}
+                  >
+                    {p.type}
+                  </span>
+                  <a
+                    href={p.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 font-sans text-xs text-violet hover:text-white transition-colors shrink-0"
+                  >
+                    View Live <ArrowUpRight size={13} />
+                  </a>
+                </div>
+                <h2 className="font-display font-bold text-white text-2xl mb-3">{p.name}</h2>
+                <p className="font-sans text-sm text-gray leading-relaxed max-w-2xl mb-6">{p.desc}</p>
+                <div className="flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <span key={t} className="font-sans text-[0.6rem] uppercase tracking-widest px-3 py-1 rounded-full"
+                      style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(249,249,249,0.45)' }}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </div>
