@@ -13,6 +13,13 @@ const stats = [
 
 const featured = [
   {
+    name: 'Habitat Cafe',
+    type: 'Restaurant & Cafe · Dynamic Web App',
+    desc: 'Full rooftop cafe website with animated frame-player hero, interactive 3D menu carousels, online reservation system, admin dashboard with analytics, and automated email notifications to customers.',
+    tags: ['Next.js 15', 'Supabase', 'Framer Motion', 'Nodemailer', 'Tailwind CSS', 'TypeScript'],
+    link: 'https://thehabitatcafe.vercel.app',
+  },
+  {
     name: "De' Needs Hyper Bazzar",
     type: 'E-Commerce · Dynamic Web App',
     desc: "Full e-commerce supermarket website with animated hero, interactive product catalogue with category filters, shopping cart with slide-out drawer, order placement system, and admin dashboard with inventory & order management.",
